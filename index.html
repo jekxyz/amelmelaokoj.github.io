@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generator Laporan Harian Kanwil — Kaltim-Utara</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div>
+      <h1>📋 Generator Laporan Harian Kanwil</h1>
+      <p>Kanwil Ditjenpas Kalimantan Timur-Utara — Rekapitulasi otomatis dari laporan 3 Bapas</p>
+    </div>
+    <div class="header-date" id="header-date">📅 …</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ===== META INFO ===== -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📅</span> Informasi Laporan</div>
+    <div class="meta-grid" style="margin-bottom:10px">
+      <div class="field">
+        <label>Hari / Tanggal</label>
+        <input type="text" id="meta-hari" placeholder="Sabtu, 2 Mei 2026" />
+      </div>
+      <div class="field">
+        <label>Pukul (WITA)</label>
+        <input type="text" id="meta-pukul" value="08.00 Wita" placeholder="08.00 Wita" />
+      </div>
+    </div>
+    <div class="meta-grid">
+      <div class="field">
+        <label>Nama Kepala Bidang PK</label>
+        <input type="text" id="meta-nama" value="Huzaifah Makmur Hidayah" />
+      </div>
+      <div class="field">
+        <label>NIP</label>
+        <input type="text" id="meta-nip" value="197505241999021001" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== JFT PK ===== -->
+  <div class="card">
+    <div class="card-title"><span class="icon">👤</span> I. Data JFT Pembimbing Kemasyarakatan (Input Manual)</div>
+    <div class="jft-grid">
+
+      <!-- Kanwil -->
+      <div class="jft-unit">
+        <div class="jft-unit-title">Kanwil Ditjenpas</div>
+        <div class="jft-row"><label>PK Pertama</label><input type="number" id="jft_kanwil_pertama" value="0" min="0" oninput="updateJftTotal('kanwil')" /></div>
+        <div class="jft-row"><label>PK Muda</label><input type="number" id="jft_kanwil_muda" value="2" min="0" oninput="updateJftTotal('kanwil')" /></div>
+        <div class="jft-row"><label>PK Madya</label><input type="number" id="jft_kanwil_madya" value="2" min="0" oninput="updateJftTotal('kanwil')" /></div>
+        <div class="jft-total"><span>Total</span><span id="jft-kanwil-total">4</span></div>
+      </div>
+
+      <!-- Samarinda -->
+      <div class="jft-unit">
+        <div class="jft-unit-title">Bapas Kelas I Samarinda</div>
+        <div class="jft-row"><label>APK</label><input type="number" id="jft_smr_apk" value="1" min="0" oninput="updateJftTotal('smr')" /></div>
+        <div class="jft-row"><label>PK Pertama</label><input type="number" id="jft_smr_pertama" value="12" min="0" oninput="updateJftTotal('smr')" /></div>
+        <div class="jft-row"><label>PK Muda</label><input type="number" id="jft_smr_muda" value="7" min="0" oninput="updateJftTotal('smr')" /></div>
+        <div class="jft-row"><label>PK Madya</label><input type="number" id="jft_smr_madya" value="4" min="0" oninput="updateJftTotal('smr')" /></div>
+        <div class="jft-total"><span>Total</span><span id="jft-smr-total">24</span></div>
+      </div>
+
+      <!-- Balikpapan -->
+      <div class="jft-unit">
+        <div class="jft-unit-title">Bapas Kelas I Balikpapan</div>
+        <div class="jft-row"><label>APK</label><input type="number" id="jft_bpp_apk" value="0" min="0" oninput="updateJftTotal('bpp')" /></div>
+        <div class="jft-row"><label>PK Pertama</label><input type="number" id="jft_bpp_pertama" value="16" min="0" oninput="updateJftTotal('bpp')" /></div>
+        <div class="jft-row"><label>PK Muda</label><input type="number" id="jft_bpp_muda" value="6" min="0" oninput="updateJftTotal('bpp')" /></div>
+        <div class="jft-row"><label>PK Madya</label><input type="number" id="jft_bpp_madya" value="5" min="0" oninput="updateJftTotal('bpp')" /></div>
+        <div class="jft-total"><span>Total</span><span id="jft-bpp-total">27</span></div>
+      </div>
+
+      <!-- Tarakan -->
+      <div class="jft-unit">
+        <div class="jft-unit-title">Bapas Kelas II Tarakan</div>
+        <div class="jft-row"><label>APK</label><input type="number" id="jft_trk_apk" value="0" min="0" oninput="updateJftTotal('trk')" /></div>
+        <div class="jft-row"><label>PK Pertama</label><input type="number" id="jft_trk_pertama" value="10" min="0" oninput="updateJftTotal('trk')" /></div>
+        <div class="jft-row"><label>PK Muda</label><input type="number" id="jft_trk_muda" value="1" min="0" oninput="updateJftTotal('trk')" /></div>
+        <div class="jft-row"><label>PK Madya</label><input type="number" id="jft_trk_madya" value="2" min="0" oninput="updateJftTotal('trk')" /></div>
+        <div class="jft-total"><span>Total</span><span id="jft-trk-total">13</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== INPUT LAPORAN BAPAS ===== -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📄</span> II–XIII. Paste Laporan Bapas (Auto-Parse)</div>
+
+    <div class="status-row">
+      <span class="badge" id="badge-smr">Samarinda: belum diisi</span>
+      <span class="badge" id="badge-bpp">Balikpapan: belum diisi</span>
+      <span class="badge" id="badge-trk">Tarakan: belum diisi</span>
+    </div>
+
+    <div class="tabs">
+      <button type="button" class="tab active" onclick="switchTab('smr',this)">Bapas Samarinda</button>
+      <button type="button" class="tab" onclick="switchTab('bpp',this)">Bapas Balikpapan</button>
+      <button type="button" class="tab" onclick="switchTab('trk',this)">Bapas Tarakan</button>
+    </div>
+
+    <!-- Panel Samarinda -->
+    <div id="panel-smr" class="panel active">
+      <label class="textarea-label">Paste laporan harian Bapas Kelas I Samarinda:</label>
+      <textarea id="txt-smr" placeholder="Paste teks laporan harian Bapas Kelas I Samarinda..." oninput="updateBadge('smr'); livePreview('smr')"></textarea>
+      <p class="hint">💡 Sistem mengenali format: Klien Dewasa/Anak, PB, CB, CMB, CMK, Asimilasi, Litmas, Narkotika, Bekerja, Diversi, AKOT, Pelatihan Kerja (LPKS/Latker), Klien Sekolah, Teroris.</p>
+      <div class="parse-preview" id="prev-smr">
+        <div class="parse-title">Hasil Parse Otomatis ✓</div>
+        <div class="parse-grid" id="prev-smr-grid"></div>
+      </div>
+    </div>
+
+    <!-- Panel Balikpapan -->
+    <div id="panel-bpp" class="panel">
+      <label class="textarea-label">Paste laporan harian Bapas Kelas I Balikpapan:</label>
+      <textarea id="txt-bpp" placeholder="Paste teks laporan harian Bapas Kelas I Balikpapan..." oninput="updateBadge('bpp'); livePreview('bpp')"></textarea>
+      <p class="hint">💡 Sistem mengenali format: Klien Dewasa/Anak, PB, CB, CMB, CMK, Asimilasi, Litmas, Narkotika, Bekerja, Diversi, AKOT, Pelatihan Kerja (LPKS/Latker), Klien Sekolah, Teroris.</p>
+      <div class="parse-preview" id="prev-bpp">
+        <div class="parse-title">Hasil Parse Otomatis ✓</div>
+        <div class="parse-grid" id="prev-bpp-grid"></div>
+      </div>
+    </div>
+
+    <!-- Panel Tarakan -->
+    <div id="panel-trk" class="panel">
+      <label class="textarea-label">Paste laporan harian Bapas Kelas II Tarakan:</label>
+      <textarea id="txt-trk" placeholder="Paste teks laporan harian Bapas Kelas II Tarakan..." oninput="updateBadge('trk'); livePreview('trk')"></textarea>
+      <p class="hint">💡 Sistem mengenali format: Klien Dewasa/Anak, PB, CB, CMB, CMK, Asimilasi, Litmas, Narkotika, Bekerja, Diversi, AKOT, Pelatihan Kerja (LPKS/Latker), Klien Sekolah, Teroris.</p>
+      <div class="parse-preview" id="prev-trk">
+        <div class="parse-title">Hasil Parse Otomatis ✓</div>
+        <div class="parse-grid" id="prev-trk-grid"></div>
+      </div>
+    </div>
+
+    <div class="err" id="err-msg"></div>
+
+    <div class="btn-row" style="margin-top:16px">
+      <button type="button" class="btn-gen" onclick="generateLaporan()">⚡ Generate Laporan Kanwil</button>
+      <button type="button" class="btn-clear" onclick="clearAll()">🗑 Bersihkan semua</button>
+    </div>
+  </div>
+
+  <!-- ===== HASIL ===== -->
+  <div class="result-wrap" id="result-area" style="display:none">
+    <div class="result-card">
+      <div class="result-header">
+        <span class="result-label">📋 Hasil Rekapitulasi Laporan Kanwil</span>
+        <button type="button" class="btn-copy" onclick="copyResult()">📋 Salin teks</button>
+      </div>
+      <div class="result-body">
+        <pre id="result-text"></pre>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<script src="app.js"></script>
+</body>
+</html>
